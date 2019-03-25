@@ -7,6 +7,7 @@ public class MyDeque<E>{
     data.addLast("hi");
     data.addLast("there");
     data.addLast("bob");
+    data.removeLast();
     System.out.println(data);
   }
 
@@ -54,12 +55,26 @@ public class MyDeque<E>{
     end++;
     // have to make this a loop
   }
-  // public E removeFirst() {
-  //
-  // }
-  // public E removeLast() {
-  //
-  // }
+  public E removeFirst() {
+    E removed = data[start];
+    data[start] = null;
+    start++;
+    size--;
+    if (start >= data.length) {
+      start = 0;
+    }
+    return removed;
+  }
+  public E removeLast() {
+    E removed = data[end];
+    data[end] = null;
+    end--;
+    size--;
+    if (end < 0) {
+      end = data.length - 1;
+    }
+    return removed;
+  }
   public E getFirst() {
     return data[start];
   }
