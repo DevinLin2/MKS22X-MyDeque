@@ -9,6 +9,7 @@ public class MyDeque<E>{
     data.addLast("bob");
     System.out.println(data);
   }
+
   @SuppressWarnings("unchecked")
   public MyDeque() {
     data = (E[])new Object[10];
@@ -27,7 +28,7 @@ public class MyDeque<E>{
     return size;
   }
   public String toString() {
-    String ans = "{ ";
+    String ans = "{";
     int addedIndex = 0;
     int s = start;
     while (addedIndex != size && s != end) {
