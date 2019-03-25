@@ -66,4 +66,20 @@ public class MyDeque<E>{
   public E getLast() {
     return data[end];
   }
+
+  @SuppressWarnings("unchecked")
+  private void resize() {
+    E[] newData = (E[]) new Object[size * 2];
+    int addedIndex = 0;
+    int s = start;
+    while (addedIndex != size && s != end) {
+      if (s >= data.length) {
+        s = 0;
+      }
+      newData[addedIndex] = data[s];
+      addedIndex++;
+      s++;
+    }
+    data = newData;
+  }
 }
