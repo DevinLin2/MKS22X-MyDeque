@@ -5,29 +5,17 @@ public class MyDeque<E>{
   public static void main(String[] args) {
     MyDeque data = new MyDeque();
     data.addFirst("hi");
-    System.out.println(data.start);
     data.addFirst("there");
-    System.out.println(data.start);
     data.addFirst("bob");
-    System.out.println(data.start);
     data.addFirst("my");
-    System.out.println(data.start);
     data.addFirst("name");
-    System.out.println(data.start);
     data.addFirst("is");
-    System.out.println(data.start);
     data.addFirst("steve");
-    System.out.println(data.start);
     data.addFirst("whats");
-    System.out.println(data.start);
     data.addFirst("up");
-    System.out.println(data.start);
     data.addFirst("bobby");
-    System.out.println(data.start);
-    data.addFirst("this");
-    System.out.println(data.start);
-    data.addFirst("fantastic");
-    System.out.println(data.start);
+    //data.removeFirst();
+    data.addFirst("bobby");
     System.out.println(data.getLast());
     System.out.println(data.getFirst());
     System.out.println(data.size());
@@ -108,7 +96,6 @@ public class MyDeque<E>{
     if (end == data.length) {
       end = 0;
       data[end] = element;
-      end++;
       size++;
     } else {
       size++;
@@ -141,12 +128,12 @@ public class MyDeque<E>{
     return data[start];
   }
   public E getLast() {
-    return data[end - 1];
+    return data[end];
   }
 
   @SuppressWarnings("unchecked")
   private void resize() {
-    E[] newData = (E[]) new Object[size * 2];
+    E[] newData = (E[]) new Object[size * 2 + 1];
     int addedIndex = 0;
     int s = start;
     while (addedIndex != size && s != end) {
