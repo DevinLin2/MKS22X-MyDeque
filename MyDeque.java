@@ -9,6 +9,7 @@ public class MyDeque<E>{
     data.addLast("bob");
     System.out.println(data);
   }
+
   @SuppressWarnings("unchecked")
   public MyDeque() {
     data = (E[])new Object[10];
@@ -16,6 +17,7 @@ public class MyDeque<E>{
     start = 0;
     end = 0;
   }
+
   @SuppressWarnings("unchecked")
   public MyDeque(int initialCapacity) {
     data = (E[])new Object[initialCapacity];
@@ -23,11 +25,13 @@ public class MyDeque<E>{
     start = 0;
     end = 0;
   }
+
   public int size() {
     return size;
   }
+
   public String toString() {
-    String ans = "{ ";
+    String ans = "{";
     int addedIndex = 0;
     int s = start;
     while (addedIndex != size && s != end) {
@@ -56,10 +60,10 @@ public class MyDeque<E>{
   // public E removeLast() {
   //
   // }
-  // public E getFirst() {
-  //
-  // }
-  // public E getLast() {
-  //
-  // }
+  public E getFirst() {
+    return data[start];
+  }
+  public E getLast() {
+    return data[end];
+  }
 }
