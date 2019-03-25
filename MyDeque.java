@@ -4,21 +4,36 @@ public class MyDeque<E>{
 
   public static void main(String[] args) {
     MyDeque data = new MyDeque();
-    data.addLast("hi");
-    data.addLast("there");
-    data.addLast("bob");
-    data.addLast("my");
-    data.addLast("name");
-    data.addLast("is");
-    data.addLast("steve");
-    data.addLast("whats");
-    data.addLast("up");
-    data.addLast("bobby");
-    data.addLast("this");
-    data.addLast("fantastic");
+    data.addFirst("hi");
+    System.out.println(data.start);
+    data.addFirst("there");
+    System.out.println(data.start);
+    data.addFirst("bob");
+    System.out.println(data.start);
+    data.addFirst("my");
+    System.out.println(data.start);
+    data.addFirst("name");
+    System.out.println(data.start);
+    data.addFirst("is");
+    System.out.println(data.start);
+    data.addFirst("steve");
+    System.out.println(data.start);
+    data.addFirst("whats");
+    System.out.println(data.start);
+    data.addFirst("up");
+    System.out.println(data.start);
+    data.addFirst("bobby");
+    System.out.println(data.start);
+    data.addFirst("this");
+    System.out.println(data.start);
+    data.addFirst("fantastic");
+    System.out.println(data.start);
     System.out.println(data.getLast());
     System.out.println(data.getFirst());
     System.out.println(data.size());
+    data.debug();
+    System.out.println(data.start);
+    System.out.println(data.end);
     System.out.println(data);
   }
 
@@ -57,8 +72,32 @@ public class MyDeque<E>{
     ans += "}";
     return ans;
   }
-  public void addFirst(E element) {
 
+  private void debug() {
+    String ans = "";
+    int index = 0;
+    for (int i = 0; i < size; i++) {
+      ans += data[index] + " ";
+      index++;
+    }
+    System.out.println(ans);
+  }
+  public void addFirst(E element) {
+    if (size == data.length) {
+      resize();
+      start = 0;
+      end = size;
+    }
+    if (start < 0) {
+      start = data.length - 1;
+      data[start] = element;
+      start--;
+      size++;
+    } else {
+      size++;
+      data[start] = element;
+      start--;
+    }
   }
   public void addLast(E element) {
     if (size == data.length) {
@@ -70,6 +109,7 @@ public class MyDeque<E>{
       end = 0;
       data[end] = element;
       end++;
+      size++;
     } else {
       size++;
       data[end] = element;
