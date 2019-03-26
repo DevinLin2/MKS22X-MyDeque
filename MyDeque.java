@@ -13,7 +13,7 @@ public class MyDeque<E>{
     data.addFirst("steve");
     data.addFirst("whats");
     data.addFirst("up");
-    data.addFirst("bobby");
+    data.addFirst("sack");
     //data.removeFirst();
     data.addFirst("bobby");
     System.out.println(data.getLast());
@@ -75,6 +75,8 @@ public class MyDeque<E>{
       resize();
       start = 0;
       end = size;
+      // System.out.println("de");
+      // debug();
     }
     if (start == 0 && size != 0) {
       start = data.length - 1;
@@ -130,7 +132,10 @@ public class MyDeque<E>{
     return data[start];
   }
   public E getLast() {
-    return data[end];
+    if (size == 1) {
+      return data[0];
+    }
+    return data[end - 1];
   }
 
   @SuppressWarnings("unchecked")
