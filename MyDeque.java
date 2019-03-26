@@ -30,7 +30,7 @@ public class MyDeque<E>{
     data = (E[])new Object[10];
     size = 0;
     start = 0;
-    end = 0;
+    end = -1;
   }
 
   @SuppressWarnings("unchecked")
@@ -38,7 +38,7 @@ public class MyDeque<E>{
     data = (E[])new Object[initialCapacity];
     size = 0;
     start = 0;
-    end = 0;
+    end = -1;
   }
 
   public int size() {
@@ -47,18 +47,17 @@ public class MyDeque<E>{
 
   public String toString() {
     String ans = "{";
-    int addedIndex = 0;
-    int s = start;
-    while (addedIndex != size && s != end) {
-      if (s >= data.length) {
-        s = 0;
+    for (int i = start; i <= end; i++) {
+      if (i < 0) {
+        ans += data[i+data.length];
+      } else {
+        ans += data[i];
       }
-      ans += data[s] + " ";
-      addedIndex++;
-      s++;
+      if (start < end) {
+        ans += " ";
+      }
     }
-    ans += "}";
-    return ans;
+    return ans + "}";
   }
 
   private void debug() {
@@ -70,26 +69,24 @@ public class MyDeque<E>{
     }
     System.out.println(ans);
   }
+
+  @SuppressWarnings("unchecked")
   public void addFirst(E element) {
-    if (size == data.length) {
-      resize();
-      start = 0;
-      end = size;
-      // System.out.println("de");
-      // debug();
-    }
-    if (start == 0 && size != 0) {
-      start = data.length - 1;
-      data[start] = element;
+    if (start - 1 < 0) {
+      if (start * -1 == data.length - 1 || size == data.length) {
+        resize();
+      }
+      start--;
+      data[data.length+start] = element;
       size++;
     } else {
-      if (size != 0) {
-        start--;
-      }
+      start--;
       data[start] = element;
       size++;
     }
   }
+
+  @SuppressWarnings("unchecked")
   public void addLast(E element) {
     if (size == data.length) {
       resize();
@@ -129,27 +126,27 @@ public class MyDeque<E>{
     return removed;
   }
   public E getFirst() {
+    if (start < 0) {
+      return data[start + data.length];
+    }
     return data[start];
   }
   public E getLast() {
-    if (size == 1) {
-      return data[0];
+    if (end < 0){
+      return data[end + data.length];
     }
-    return data[end - 1];
+    return data[end];
   }
 
   @SuppressWarnings("unchecked")
   private void resize() {
     E[] newData = (E[]) new Object[size * 2 + 1];
-    int addedIndex = 0;
-    int s = start;
-    while (addedIndex != size && s != end) {
-      if (s >= data.length) {
-        s = 0;
+    for (int i = start; i <= end; i++) {
+      if (i < 0) {
+        newData[newData.length + i] = data[data.length + i];
+      } else {
+        newData[i] = data[i];
       }
-      newData[addedIndex] = data[s];
-      addedIndex++;
-      s++;
     }
     data = newData;
   }
