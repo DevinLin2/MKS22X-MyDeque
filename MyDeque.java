@@ -76,15 +76,16 @@ public class MyDeque<E>{
       start = 0;
       end = size;
     }
-    if (start < 0) {
+    if (start == 0 && size != 0) {
       start = data.length - 1;
       data[start] = element;
-      start--;
       size++;
     } else {
-      size++;
+      if (size != 0) {
+        start--;
+      }
       data[start] = element;
-      start--;
+      size++;
     }
   }
   public void addLast(E element) {
@@ -93,16 +94,17 @@ public class MyDeque<E>{
       start = 0;
       end = size;
     }
-    if (end == data.length) {
+    if (end == data.length - 1) {
       end = 0;
       data[end] = element;
       size++;
     } else {
-      size++;
+      if (size != 0) {
+        end++;
+      }
       data[end] = element;
-      end++;
+      size++;
     }
-    // have to make this a loop
   }
   public E removeFirst() {
     E removed = data[start];
