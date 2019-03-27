@@ -10,9 +10,14 @@ public class Calculator{
   public static double eval(String s) {
     MyDeque data = new MyDeque();
     String[] values = s.split(" ");
+    double ans = 0.0;
     for (int i = 0; i < values.length; i++) {
-      
+      try {
+
+      } catch(NumberFormatException e) {
+        
+      }
     }
-    return 0.0;
+    return ans;
   }
 }
