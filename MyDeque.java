@@ -6,25 +6,25 @@ public class MyDeque<E>{
 
   public static void main(String[] args) {
     MyDeque data = new MyDeque();
-    // data.addFirst("hi");
-    // data.addFirst("there");
-    // data.addFirst("bob");
-    // data.addFirst("my");
-    // data.addFirst("name");
-    // data.addFirst("is");
-    // data.addFirst("steve");
-    // data.addFirst("whats");
-    // data.addFirst("up");
-    // data.addFirst("sack");
-    // //data.removeFirst();
-    // data.addFirst("bobby");
-    // System.out.println(data.getLast());
-    // System.out.println(data.getFirst());
-    // System.out.println(data.size());
-    // data.debug();
-    // System.out.println(data.start);
-    // System.out.println(data.end);
-    // System.out.println(data);
+    data.addFirst("hi");
+    data.addFirst("there");
+    data.addFirst("bob");
+    data.addFirst("my");
+    data.addFirst("name");
+    data.addFirst("is");
+    data.addFirst("steve");
+    data.addFirst("whats");
+    data.addFirst("up");
+    data.addFirst("sack");
+    //data.removeFirst();
+    data.addFirst("bobby");
+    System.out.println(data.getLast());
+    System.out.println(data.getFirst());
+    System.out.println(data.size());
+    data.debug();
+    System.out.println(data.start);
+    System.out.println(data.end);
+    System.out.println(data);
   }
 
   @SuppressWarnings("unchecked")
@@ -76,6 +76,19 @@ public class MyDeque<E>{
   public void addFirst(E element) {
     if (element == null) {
       throw new NullPointerException("Enter a new valid element");
+    }
+    if (start - 1 < 0) {
+      if (start * -1 == data.length - 1 || size == data.length) {
+        resize(); // dont need to redefine start and end as that will be taken care of using "+ data.length"
+      }
+      size++;
+      start--;
+      data[data.length + start] = element;
+    } else {
+      // this means that start is not negative
+      start--;
+      data[start] = element;
+      size++;
     }
   }
   // public void addLast(E element) {
