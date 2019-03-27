@@ -106,11 +106,16 @@ public class MyDeque<E>{
       data[end] = element; // the regular case
     }
   }
-  // public E removeFirst() {
-  //   if (size == 0) {
-  //     throw new NoSuchElementException("The list is empty");
-  //   }
-  // }
+  public E removeFirst() {
+    if (size == 0) {
+      throw new NoSuchElementException("The list is empty");
+    }
+    start++;
+    E toRemove = data[data.length + start];
+    data[data.length + start] = null;
+    size--;
+    return toRemove;
+  }
   // public E removeLast() {
   //   if (size == 0) {
   //     throw new NoSuchElementException("The list is empty");
