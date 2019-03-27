@@ -32,7 +32,7 @@ public class MyDeque<E>{
     data = (E[])new Object[10];
     size = 0;
     start = 0;
-    end = 0;
+    end = -1;
   }
 
   @SuppressWarnings("unchecked")
@@ -40,7 +40,7 @@ public class MyDeque<E>{
     data = (E[])new Object[initialCapacity];
     size = 0;
     start = 0;
-    end = 0;
+    end = -1;
   }
 
   public int size() {
@@ -49,13 +49,18 @@ public class MyDeque<E>{
 
   public String toString() {
     String ans = "{";
-    for (int i = start; i != end; i++) {
-      if (i > data.length - 1) {
-        i = 0;
+    for (int i = start; i <= end; i++) {
+      if (i < 0) {
+        ans += data[i + data.length]; // this allows for the negative index to be converted into the correct positive index
+      } else {
+        ans += data[i];
       }
-      ans += data[i] + " ";
+      if (start < end) {
+        ans += " ";
+      }
     }
-    return ans + "}";
+    ans += "}";
+    return ans;
   }
 
   private void debug() {
