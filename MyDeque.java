@@ -110,9 +110,9 @@ public class MyDeque<E>{
     if (size == 0) {
       throw new NoSuchElementException("The list is empty");
     }
-    start++;
     E toRemove = data[data.length + start];
     data[data.length + start] = null;
+    start++;
     size--;
     return toRemove;
   }
