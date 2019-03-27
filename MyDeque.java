@@ -110,17 +110,39 @@ public class MyDeque<E>{
     if (size == 0) {
       throw new NoSuchElementException("The list is empty");
     }
-    E toRemove = data[data.length + start];
-    data[data.length + start] = null;
-    start++;
-    size--;
-    return toRemove;
+    if (start < 0) { // checks if start is within bounds
+      E toRemove = data[data.length + start];
+      data[data.length + start] = null;
+      start++;
+      size--;
+      return toRemove;
+    } else {
+      E toRemove = data[start];
+      data[start] = null;
+      start++;
+      size--;
+      return toRemove;
+    }
   }
-  // public E removeLast() {
-  //   if (size == 0) {
-  //     throw new NoSuchElementException("The list is empty");
-  //   }
-  // }
+  public E removeLast() { // same as remove first
+    if (size == 0) {
+      throw new NoSuchElementException("The list is empty");
+    }
+    if (end < 0) {
+      E toRemove = data[data.length + end];
+      data[data.length + end] = null;
+      end--;
+      size--;
+      return toRemove;
+    } else {
+      E toRemove = data[end];
+      data[end] = null;
+      end--;
+      size--;
+      return toRemove;
+    }
+  }
+  //
   // public E getFirst() {
   //   if (size == 0) {
   //     throw new NoSuchElementException("The list is empty");
