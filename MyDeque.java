@@ -127,7 +127,16 @@ public class MyDeque<E>{
   //   }
   // }
   //
-  // @SuppressWarnings("unchecked")
-  // private void resize() {
-  // }
+  @SuppressWarnings("unchecked")
+  private void resize() {
+    E[] newData = (E[]) new Object[data.length * 2 + 1];
+    for (int i = start; i <= end; i++) {
+      if (i < 0) {
+        newData[i + newData.length] = data[i + data.length];
+      } else {
+        newData[i] = data[i];
+      }
+    }
+    data = newData;
+  }
 }
