@@ -6,18 +6,18 @@ public class MyDeque<E>{
 
   public static void main(String[] args) {
     MyDeque data = new MyDeque();
-    data.addFirst("hi");
-    data.addFirst("there");
-    data.addFirst("bob");
-    data.addFirst("my");
-    data.addFirst("name");
-    data.addFirst("is");
-    data.addFirst("steve");
-    data.addFirst("whats");
-    data.addFirst("up");
-    data.addFirst("sack");
+    data.addLast("hi");
+    data.addLast("there");
+    data.addLast("bob");
+    data.addLast("my");
+    data.addLast("name");
+    data.addLast("is");
+    data.addLast("steve");
+    data.addLast("whats");
+    data.addLast("up");
+    data.addLast("sack");
     //data.removeFirst();
-    data.addFirst("bobby");
+    data.addLast("bobby");
     System.out.println(data.getLast());
     System.out.println(data.getFirst());
     System.out.println(data.size());
@@ -91,11 +91,21 @@ public class MyDeque<E>{
       size++;
     }
   }
-  // public void addLast(E element) {
-  //   if (element == null) {
-  //     throw new NullPointerException("Enter a new valid element");
-  //   }
-  // }
+  public void addLast(E element) {
+    if (element == null) {
+      throw new NullPointerException("Enter a new valid element");
+    }
+    if (end == data.length - 1 || size == data.length) {
+      resize();
+    }
+    size++;
+    end++;
+    if (end < 0) {
+      data[end + data.length] = element; // this takes care of the cases where end is in front of start
+    } else {
+      data[end] = element; // the regular case
+    }
+  }
   // public E removeFirst() {
   //   if (size == 0) {
   //     throw new NoSuchElementException("The list is empty");
